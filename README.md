@@ -1,2 +1,2 @@
-## Waf Bypass ##
-# Payload #
+# Payload waf bypass #
+
